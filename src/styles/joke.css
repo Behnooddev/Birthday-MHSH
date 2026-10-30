@@ -1,0 +1,113 @@
+.joke {
+  padding-bottom: clamp(60px, 9vw, 110px);
+}
+
+.joke-card {
+  position: relative;
+  padding: clamp(30px, 6vw, 60px);
+  overflow: hidden;
+}
+.joke-card::before {
+  /* single soft accent light, top-right */
+  content: '';
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  right: -120px;
+  top: -140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.28), transparent 65%);
+  pointer-events: none;
+}
+.joke-card__mark {
+  position: absolute;
+  left: clamp(18px, 4vw, 40px);
+  top: clamp(-6px, 0vw, 0px);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(110px, 18vw, 180px);
+  line-height: 1;
+  color: var(--cyan);
+  opacity: 0.12;
+  user-select: none;
+}
+.joke-card__quote {
+  position: relative;
+  display: grid;
+  gap: 18px;
+}
+.joke-card__setup {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 3.6vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+.joke-card__punch {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(22px, 3.6vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--cyan);
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(8px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease);
+}
+.joke-card.is-punched .joke-card__punch {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.joke-card__src {
+  position: relative;
+  margin-top: clamp(26px, 4vw, 40px);
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.joke-card__tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  background: var(--violet-dim);
+  color: #c9b6ff;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- footer ---------- */
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 34px 0 40px;
+}
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 28px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.footer__credit { color: var(--text); }
+.footer__c {
+  padding: 0 2px;
+  border: 0;
+  background: none;
+  cursor: default;
+  color: inherit;
+  font: inherit;
+}
+.footer__c:focus-visible { outline-offset: 2px; border-radius: 4px; }
+
+@media (max-width: 640px) {
+  .footer__inner { flex-direction: column; align-items: flex-start; }
+}

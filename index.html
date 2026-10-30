@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>MILLEMSEV — Birthday Edition 2026</title>
+    <meta name="description" content="A different kind of birthday experience. An interactive, hand-built gift for @millemsev." />
+    <meta name="theme-color" content="#080A12" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#birthday">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+
+    <header class="nav" id="nav">
+      <div class="nav__inner">
+        <a class="nav__logo" href="#hero" aria-label="MILLEMSEV — back to top">
+          <span class="nav__mark" aria-hidden="true">M</span>
+          <span class="nav__word">MILLEMSEV</span>
+        </a>
+        <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+          <span class="sr-only">Menu</span>
+          <span class="nav__bars" aria-hidden="true"></span>
+        </button>
+        <nav class="nav__links" id="nav-links" aria-label="Sections">
+          <a href="#birthday" data-nav="birthday">Level</a>
+          <a href="#court" data-nav="court">Court</a>
+          <a href="#sound" data-nav="sound">Sound</a>
+          <a href="#globe" data-nav="globe">World</a>
+          <a href="#joke" data-nav="joke">Last thing</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- 00 — HERO -->
+      <section class="hero" id="hero" aria-labelledby="hero-title" data-section="hero">
+        <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero__grid" aria-hidden="true"></div>
+        <div class="hero__vignette" aria-hidden="true"></div>
+
+        <div class="hero__inner">
+          <p class="eyebrow hero__eyebrow"><span class="dot" aria-hidden="true"></span>@millemsev &nbsp;·&nbsp; Birthday Edition 2026</p>
+
+          <h1 class="hero__title" id="hero-title" aria-label="MILLEMSEV">
+            <span class="hero__letter" aria-hidden="true" style="--i:0">M</span><span class="hero__letter" aria-hidden="true" style="--i:1">I</span><span class="hero__letter" aria-hidden="true" style="--i:2">L</span><span class="hero__letter" aria-hidden="true" style="--i:3">L</span><span class="hero__letter" aria-hidden="true" style="--i:4">E</span><span class="hero__letter" aria-hidden="true" style="--i:5">M</span><span class="hero__letter" aria-hidden="true" style="--i:6">S</span><span class="hero__letter" aria-hidden="true" style="--i:7">E</span><span class="hero__letter" aria-hidden="true" style="--i:8">V</span>
+          </h1>
+
+          <p class="hero__sub">A different kind of birthday experience.</p>
+
+          <div class="hero__actions">
+            <button class="btn btn--primary" id="enter-btn" type="button">
+              <span>Enter experience</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="clock" role="timer" aria-label="Your local time">
+              <span class="clock__label" id="clock-zone">Local time</span>
+              <time class="clock__time" id="clock-time" datetime="">--:--:--</time>
+              <span class="clock__date" id="clock-date"></span>
+            </div>
+          </div>
+        </div>
+
+        <a class="scroll-hint" href="#birthday" aria-label="Scroll to the next section">
+          <span class="scroll-hint__label">Scroll</span>
+          <span class="scroll-hint__line" aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <!-- 01 — BIRTHDAY -->
+      <section class="section birthday" id="birthday" aria-labelledby="birthday-title" data-section="birthday">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="eyebrow">01 &nbsp;/&nbsp; Level</p>
+            <h2 class="section__title" id="birthday-title" tabindex="-1">Another level is waiting.</h2>
+            <p class="section__lead">Some things have to be earned. Hold the ring until it fills.</p>
+          </header>
+
+          <div class="stage panel" id="stage" data-state="locked">
+            <div class="stage__fx" aria-hidden="true">
+              <span class="stage__flash"></span>
+              <span class="stage__wave"></span>
+              <span class="stage__scan"></span>
+            </div>
+
+            <div class="charge" id="charge">
+              <button class="charge__btn" id="charge-btn" type="button" aria-describedby="charge-hint">
+                <svg class="charge__ring" viewBox="0 0 120 120" aria-hidden="true">
+                  <circle class="charge__track" cx="60" cy="60" r="54" />
+                  <circle class="charge__bar" cx="60" cy="60" r="54" />
+                </svg>
+                <span class="charge__core" aria-hidden="true">
+                  <span class="charge__lv">LV</span>
+                  <span class="charge__num" id="charge-num">00</span>
+                </span>
+                <span class="sr-only">Hold to unlock the birthday message</span>
+              </button>
+              <p class="charge__hint" id="charge-hint">Press and hold the ring &mdash; or hold <kbd>Space</kbd> &mdash; to unlock.</p>
+            </div>
+
+            <div class="message" id="message" aria-hidden="true">
+              <p class="msg-lead">
+                <span class="line">Another year.</span>
+                <span class="line">Another chapter.</span>
+                <span class="line line--accent">Another level unlocked.</span>
+              </p>
+              <p class="msg-name">Happy Birthday,<br /><span class="name">Mohammad Hossein.</span></p>
+              <p class="msg-close">Keep exploring, keep connecting, and never stop being curious about the world.</p>
+              <button class="btn btn--ghost msg-replay" id="replay-btn" type="button" tabindex="-1">Replay</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 — COURT -->
+      <section class="section court" id="court" aria-labelledby="court-title" data-section="court">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="eyebrow">02 &nbsp;/&nbsp; Court</p>
+            <h2 class="section__title" id="court-title">Ten shots. Make them count.</h2>
+            <p class="section__lead">Drag back anywhere on the court and release to shoot &mdash; like a slingshot. Longer pull, harder shot.</p>
+          </header>
+
+          <div class="game panel" data-reveal>
+            <div class="game__bar">
+              <fieldset class="seg" id="level-seg">
+                <legend class="sr-only">Difficulty</legend>
+                <label class="seg__item"><input type="radio" name="level" value="rookie" checked /><span>Rookie</span></label>
+                <label class="seg__item"><input type="radio" name="level" value="pro" /><span>Pro</span></label>
+                <label class="seg__item"><input type="radio" name="level" value="allstar" /><span>All-Star</span></label>
+              </fieldset>
+
+              <dl class="hud">
+                <div class="hud__item"><dt>Score</dt><dd id="hud-score">0</dd></div>
+                <div class="hud__item"><dt>Shots left</dt><dd id="hud-shots">10</dd></div>
+                <div class="hud__item"><dt>Streak</dt><dd id="hud-streak">0</dd></div>
+                <div class="hud__item"><dt>Best</dt><dd id="hud-best">0</dd></div>
+              </dl>
+            </div>
+
+            <div class="game__stage" id="game-stage">
+              <canvas class="game__canvas" id="game-canvas" tabindex="0"
+                aria-label="Basketball court. Drag back and release to shoot. With a keyboard: arrow keys aim and set power, Space shoots."></canvas>
+              <div class="game__over" id="game-over" hidden>
+                <div class="game__over-card">
+                  <p class="eyebrow">Round complete</p>
+                  <p class="game__over-score"><span id="over-score">0</span><small> pts</small></p>
+                  <p class="game__over-meta" id="over-meta"></p>
+                  <button class="btn btn--primary" id="over-restart" type="button">Play again</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="game__foot">
+              <p class="game__help">Mouse or touch: drag back &amp; release. Keyboard: <kbd>←</kbd><kbd>→</kbd> power, <kbd>↑</kbd><kbd>↓</kbd> angle, <kbd>Space</kbd> shoot.</p>
+              <button class="btn btn--ghost" id="game-reset" type="button">New round</button>
+            </div>
+            <p class="sr-only" id="game-status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 — SOUND -->
+      <section class="section sound" id="sound" aria-labelledby="sound-title" data-section="sound">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="eyebrow">03 &nbsp;/&nbsp; Sound</p>
+            <h2 class="section__title" id="sound-title">Three moods, built from scratch.</h2>
+            <p class="section__lead">Inspired by the music on repeat. Every track here is an original synth sketch generated live in your browser &mdash; no borrowed audio.</p>
+          </header>
+
+          <div class="player panel" id="player" data-reveal>
+            <div class="player__main">
+              <div class="player__art" id="player-art" aria-hidden="true"><span id="player-art-n">01</span></div>
+              <div class="player__info">
+                <p class="eyebrow" id="player-state">Demo · original synth</p>
+                <h3 class="player__title" id="player-title">Court Lights</h3>
+                <p class="player__meta" id="player-meta"></p>
+                <p class="player__ref" id="player-ref"></p>
+              </div>
+            </div>
+
+            <canvas class="player__viz" id="viz" aria-hidden="true"></canvas>
+
+            <div class="player__progress">
+              <span class="player__time" id="time-cur">0:00</span>
+              <input class="range" id="seek" type="range" min="0" max="1000" value="0" aria-label="Seek" />
+              <span class="player__time" id="time-dur">0:00</span>
+            </div>
+
+            <div class="player__controls">
+              <div class="player__buttons">
+                <button class="icon-btn" id="prev-btn" type="button" aria-label="Previous track">
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 5v14M19 5l-9 7 9 7z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                </button>
+                <button class="icon-btn icon-btn--main" id="play-btn" type="button" aria-label="Play">
+                  <svg class="i-play" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                  <svg class="i-pause" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>
+                </button>
+                <button class="icon-btn" id="next-btn" type="button" aria-label="Next track">
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M18 5v14M5 5l9 7-9 7z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                </button>
+              </div>
+              <label class="player__vol">
+                <span class="sr-only">Volume</span>
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zM16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <input class="range range--vol" id="vol" type="range" min="0" max="100" value="60" aria-label="Volume" />
+              </label>
+            </div>
+
+            <ol class="tracklist" id="tracklist" aria-label="Tracks"></ol>
+            <p class="player__note">Demo state: the songs that inspired these moods are not included for rights reasons. The tracks above are original generative sketches.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 — GLOBE -->
+      <section class="section globe" id="globe" aria-labelledby="globe-title" data-section="globe">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="eyebrow">04 &nbsp;/&nbsp; World</p>
+            <h2 class="section__title" id="globe-title">Connections, everywhere.</h2>
+            <p class="section__lead">Different countries, different languages, the same message. Drag the globe, or pick a country.</p>
+          </header>
+
+          <div class="world" data-reveal>
+            <div class="world__globe panel">
+              <canvas id="globe-canvas" class="world__canvas" aria-label="Interactive globe. Drag to rotate. Use the country buttons for an accessible alternative."></canvas>
+              <div class="world__tip" id="globe-tip" hidden></div>
+              <p class="world__loading" id="globe-loading">Loading map…</p>
+            </div>
+
+            <div class="world__side">
+              <div class="greeting panel" id="greeting" aria-live="polite">
+                <p class="eyebrow" id="greet-country">Pick a country</p>
+                <p class="greeting__text" id="greet-text" lang="en">Happy birthday</p>
+                <p class="greeting__sub" id="greet-sub">English &middot; everywhere</p>
+              </div>
+              <ul class="chips" id="chips" aria-label="Countries"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 — JOKE -->
+      <section class="section joke" id="joke" aria-labelledby="joke-title" data-section="joke">
+        <div class="container container--narrow">
+          <header class="section__head section__head--center" data-reveal>
+            <p class="eyebrow">05 &nbsp;/&nbsp; Bonus</p>
+            <h2 class="section__title" id="joke-title">One Last Thing...</h2>
+          </header>
+
+          <figure class="joke-card panel" id="joke-card" data-reveal>
+            <span class="joke-card__mark" aria-hidden="true">“</span>
+            <blockquote class="joke-card__quote">
+              <p class="joke-card__setup">I took the shell off my racing snail to make it go faster.</p>
+              <p class="joke-card__punch" id="joke-punch">If anything, it just made it more sluggish.</p>
+            </blockquote>
+            <figcaption class="joke-card__src">
+              <span class="joke-card__tag">r/AskReddit</span>
+              <span>Comment by u/shelledtortoise in <a href="https://www.reddit.com/r/AskReddit/comments/140daoz/what_is_your_best_joke/" target="_blank" rel="noopener noreferrer">“What is your best joke?”</a></span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p class="footer__tag">Made with code, creativity, and a little bit of chaos.</p>
+        <p class="footer__credit">Designed &amp; Developed by Behnood Shafiei</p>
+        <p class="footer__copy"><button class="footer__c" id="footer-c" type="button" aria-label="Copyright 2026">©</button> 2026</p>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <canvas class="fx" id="fx" aria-hidden="true"></canvas>
+  </body>
+</html>
