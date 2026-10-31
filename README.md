@@ -49,3 +49,6 @@ public/favicon.svg
 2. Type `millemsev` anywhere
 3. Press `B` three times quickly
 4. Click the © in the footer seven times
+5. Type `1000-7`, or tap the hero clock seven times
+
+The court's game-over card also shows a round rank (C, B, A, S, SS).

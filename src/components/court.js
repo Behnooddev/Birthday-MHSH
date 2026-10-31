@@ -12,6 +12,8 @@ export function initCourt() {
     best: $('#hud-best'),
     over: $('#game-over'),
     overScore: $('#over-score'),
+    overRank: $('#over-rank'),
+    overTier: $('#over-tier'),
     overMeta: $('#over-meta'),
     status: $('#game-status'),
   };
@@ -49,6 +51,8 @@ export function initCourt() {
         return;
       }
       els.overScore.textContent = String(result.score);
+      els.overTier.textContent = result.rank;
+      els.overRank.dataset.tier = result.rank;
       const rec = result.score >= best && result.score > 0 ? ' · New personal best' : '';
       els.overMeta.textContent = `${result.made} of ${SHOTS_PER_ROUND} made · best streak ${result.bestStreak} · ${result.level}${rec}`;
       els.over.hidden = false;

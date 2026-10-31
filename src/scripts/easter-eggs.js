@@ -19,6 +19,7 @@ function ensureDialog() {
       <p class="eyebrow" id="secret-tag"></p>
       <h2 class="secret__title" id="secret-title"></h2>
       <p class="secret__body" id="secret-body"></p>
+      <div class="secret__extra" id="secret-extra"></div>
       <button class="btn btn--primary" type="button" id="secret-close">Back to the page</button>
     </div>`;
   document.body.appendChild(dialog);
@@ -41,22 +42,39 @@ function ensureDialog() {
   return dialog;
 }
 
-function showSecret(tag, title, body) {
+function showSecret(tag, title, body, extra = '') {
   const d = ensureDialog();
   lastFocus = document.activeElement;
   $('#secret-tag', d).textContent = tag;
   $('#secret-title', d).textContent = title;
   $('#secret-body', d).textContent = body;
+  $('#secret-extra', d).innerHTML = extra; // hard-coded markup only
   d.hidden = false;
   $('#secret-close', d).focus();
 }
+
+// Minimal eyepatch: a strap, and a patch over it.
+const EYEPATCH = `<svg class="profile__eye" viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 11C14 6 34 6 46 11M2 22C14 27 34 27 46 22" opacity=".55"/><ellipse cx="24" cy="16.5" rx="11.5" ry="9" fill="#101421"/><path d="M17.5 13.2c3.2-2 9.8-2 13 0" opacity=".4"/></svg>`;
+
+const GHOUL_SEQUENCE = Array.from({ length: 6 }, (_, i) => 1000 - 7 * i);
+const GHOUL_MARKUP = `
+  <span class="secret__crawl" aria-hidden="true"></span>
+  <p class="counter" role="img" aria-label="${GHOUL_SEQUENCE.join(', ')}">${GHOUL_SEQUENCE.map((n, i) => `<span style="--i:${i}" aria-hidden="true">${n}</span>`).join('')}</p>
+  <div class="profile">
+    ${EYEPATCH}
+    <div class="profile__who"><span class="profile__handle">@millemsev</span><span class="profile__sub">Classified</span></div>
+    <span class="rank" data-tier="SS"><span class="rank__label">Rank</span><span class="rank__tier">SS</span></span>
+  </div>`;
 
 export function initEasterEggs({ hero } = {}) {
   const found = new Set();
   const mark = (id) => {
     found.add(id);
-    return `${found.size}/4`;
+    return `${found.size}/5`;
   };
+
+  const openGhoul = () =>
+    showSecret(`Secret ${mark('ghoul')}`, '1000-7', 'Some numbers only mean something to the right person.', GHOUL_MARKUP);
 
   // 1 — Konami code
   let konamiIdx = 0;
@@ -92,6 +110,10 @@ export function initEasterEggs({ hero } = {}) {
         toast(`@millemsev recognized. Welcome back, player. (${mark('handle')})`, 4200);
         hero?.particles?.burst(window.innerWidth / 2, window.innerHeight / 2, 6);
       }
+      if (typed.endsWith('1000-7')) {
+        typed = '';
+        openGhoul();
+      }
     }
 
     // B x3
@@ -104,6 +126,19 @@ export function initEasterEggs({ hero } = {}) {
         ballRain();
         toast(`Bucket rain. (${mark('rain')})`, 3600);
       }
+    }
+  });
+
+  // 5 — the hero clock, seven taps (touch-friendly route to 1000-7)
+  let clockTaps = 0;
+  let clockTimer = 0;
+  $('.clock')?.addEventListener('click', () => {
+    clockTaps += 1;
+    clearTimeout(clockTimer);
+    clockTimer = window.setTimeout(() => (clockTaps = 0), 1800);
+    if (clockTaps >= 7) {
+      clockTaps = 0;
+      openGhoul();
     }
   });
 

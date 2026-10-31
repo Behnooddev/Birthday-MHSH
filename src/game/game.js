@@ -12,6 +12,7 @@ import {
 } from './constants.js';
 import { hoopAt, newBall, previewPath, pullToVelocity, stepBall } from './physics.js';
 import { drawScene, makeCourt } from './render.js';
+import { rankFor } from './rank.js';
 import { clamp, rand, reducedMotion } from '../scripts/utils.js';
 
 const STEP = 1 / 120;
@@ -171,8 +172,9 @@ export function createGame(canvas, ui) {
 
   function endRound() {
     phase = 'over';
-    ui.over({ score, made, bestStreak, level: LEVELS[levelKey].label });
-    ui.announce(`Round complete. ${score} points, ${made} of ${SHOTS_PER_ROUND} made.`);
+    const rank = rankFor(score);
+    ui.over({ score, made, bestStreak, level: LEVELS[levelKey].label, rank });
+    ui.announce(`Round complete. ${score} points, ${made} of ${SHOTS_PER_ROUND} made. Rank ${rank}.`);
   }
 
   /* ---------- simulation ---------- */

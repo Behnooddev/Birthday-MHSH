@@ -1,0 +1,155 @@
+/* Small personal details: classification chip, a faint segmented chain, the secret profile card. */
+
+:root {
+  /* One faint segmented chain, reused by the footer rule and the secret dialog. */
+  --chain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12' viewBox='0 0 22 12' fill='none' stroke='%23f1f3fa' stroke-linecap='round'%3E%3Cellipse cx='11' cy='6' rx='3.6' ry='2.6'/%3E%3Cpath d='M8.6 4.6 5.6 1.4M8.6 7.4 5.6 10.6M13.4 4.6 16.4 1.4M13.4 7.4 16.4 10.6'/%3E%3C/svg%3E");
+  --fade-x: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+/* ---------- rank chip ---------- */
+.rank {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.rank__label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.rank__tier {
+  min-width: 2.6em;
+  padding: 3px 12px;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+}
+.rank[data-tier='S'] .rank__tier {
+  color: var(--cyan);
+  border-color: rgba(34, 228, 242, 0.4);
+}
+.rank[data-tier='SS'] .rank__tier {
+  border-color: rgba(34, 228, 242, 0.55);
+  background: linear-gradient(90deg, var(--cyan-dim), var(--violet-dim));
+}
+
+/* ---------- footer: the chain crawls along the existing rule ---------- */
+.footer {
+  position: relative;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: -6px 0 auto 0;
+  height: 12px;
+  background: var(--chain) repeat-x center;
+  opacity: 0.16;
+  -webkit-mask-image: var(--fade-x);
+  mask-image: var(--fade-x);
+  pointer-events: none;
+}
+
+/* ---------- 1000-7 secret ---------- */
+.clock {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.secret__extra {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  margin-bottom: 26px;
+}
+.secret__extra:empty {
+  display: none;
+}
+.secret__body:has(+ .secret__extra:not(:empty)) {
+  margin-bottom: 18px;
+}
+
+.secret__crawl {
+  width: 100%;
+  height: 12px;
+  background: var(--chain) repeat-x 0 50%;
+  opacity: 0.32;
+  -webkit-mask-image: var(--fade-x);
+  mask-image: var(--fade-x);
+  animation: crawl 7s linear infinite;
+}
+@keyframes crawl {
+  to { background-position: -220px 50%; }
+}
+
+.counter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 16px;
+  font-family: var(--font-mono);
+  font-size: clamp(17px, 4.6vw, 21px);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+.counter span {
+  opacity: 0;
+  animation: tick-in 0.5s var(--ease) forwards;
+  animation-delay: calc(0.2s + var(--i) * 0.36s);
+}
+.counter span:last-child {
+  color: var(--cyan);
+}
+
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: rgba(8, 10, 18, 0.5);
+  opacity: 0;
+  animation: tick-in 0.7s var(--ease) 2.5s forwards;
+}
+.profile__eye {
+  flex: none;
+  width: 38px;
+  height: 25px;
+  color: var(--cyan);
+}
+.profile__who {
+  display: grid;
+  text-align: left;
+}
+.profile__handle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.profile__sub {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@keyframes tick-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .counter span,
+  .profile { animation-delay: 0s; }
+}
